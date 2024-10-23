@@ -4,13 +4,12 @@ import 'package:flutter/widgets.dart' show Widget;
 
 @immutable
 class QuillEditorOrderedListElementOptions extends Equatable {
-  const QuillEditorOrderedListElementOptions({
-    this.useTextColorForDot = true,
-    this.customWidget,
-  });
+  const QuillEditorOrderedListElementOptions(
+      {this.useTextColorForDot = true, this.builder});
 
   final bool useTextColorForDot;
-  final Widget? customWidget;
+  final Widget Function(String index)? builder;
+
   @override
   List<Object?> get props => [];
 }

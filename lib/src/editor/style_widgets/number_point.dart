@@ -29,14 +29,19 @@ class QuillEditorNumberPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget? child;
+    try {
+      child = context.quillEditorConfigurations?.elementOptions.orderedList
+          .builder!(index);
+    } catch (e) {}
+
     if (!attrs.containsKey(Attribute.indent.key) && indentLevelCounts.isEmpty) {
       return Container(
         alignment: AlignmentDirectional.topEnd,
         width: width,
         padding: EdgeInsetsDirectional.only(end: padding),
         color: backgroundColor,
-        child: context.quillEditorConfigurations?.elementOptions.orderedList
-                .customWidget ??
+        child: child ??
             Text(
               withDot ? '$index.' : index,
               style: style,
@@ -49,8 +54,7 @@ class QuillEditorNumberPoint extends StatelessWidget {
       width: width,
       padding: EdgeInsetsDirectional.only(end: padding),
       color: backgroundColor,
-      child: context.quillEditorConfigurations?.elementOptions.orderedList
-              .customWidget ??
+      child: child ??
           Text(
             withDot ? '$index.' : index,
             style: style,
